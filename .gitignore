@@ -21,3 +21,25 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+*.pyc
+.idea/workspace.xml
+/cpp/run.tests
+/ocaml/_build
+/ocaml/*.native
+csharp/packages/
+csharp/Tennis/bin/
+csharp/Tennis/obj/
+csharp/*.suo
+*.swp
+.DS_Store
+csharp/.vs
+.vs
+.phpunit.result.cache
+.idea/
+.classpath
+.project
+.settings/
+target/
+**/*.iml
+CATALINA*
