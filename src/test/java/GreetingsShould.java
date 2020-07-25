@@ -24,4 +24,11 @@ public class GreetingsShould {
         String greetingsMessage = new Greetings().greet(name);
         assertEquals("HELLO JERRY!", greetingsMessage);
     }
+
+    @Test
+    public void greetTwoPeople() {
+        String[] names = {"Jill", "Jane"};
+        String greetingsMessage = new Greetings().greet(names);
+        assertEquals("Hello, Jill and Jane.", greetingsMessage);
+    }
 }

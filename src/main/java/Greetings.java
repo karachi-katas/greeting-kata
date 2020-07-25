@@ -13,4 +13,8 @@ public class Greetings {
     private boolean isUpperCase(String name) {
         return name.toUpperCase().equals(name);
     }
+
+    public String greet(String[] names) {
+        return String.format("Hello, %s and %s.", names[0], names[1]);
+    }
 }
