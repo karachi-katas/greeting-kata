@@ -3,10 +3,14 @@ public class Greeting {
     public String to(String name) {
         name = name == null ? "my friend" : name;
 
+        String prefix = "Hello, ";
+        String postfix = ".";
+
         if (name.equals(name.toUpperCase())) {
-            return "HELLO " + name + "!";
+            prefix = "HELLO ";
+            postfix = "!";
         }
 
-        return "Hello, " +  name + ".";
+        return prefix +  name + postfix;
     }
 }
