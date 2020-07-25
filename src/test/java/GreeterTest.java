@@ -2,7 +2,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FooTest {
+public class GreeterTest {
 
     @Test
     public void greetShaheer() {
@@ -11,7 +11,7 @@ public class FooTest {
     }
 
     @Test
-    public void abc() {
+    public void greetAmar() {
         String greeting = new Greeter().greet("Amar");
         assertEquals("Hello, Amar.", greeting);
     }
