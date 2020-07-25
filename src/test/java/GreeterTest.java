@@ -30,15 +30,17 @@ public class GreeterTest {
     }
 
     @Test
-    public void greenWhenMultipleNamesAmyAndBrian() {
+    public void greetWhenTwoNamesAmyAndBrian() {
         String greeting = new Greeter().greet(new String[]{"Amy", "Brian"});
         assertEquals("Hello, Amy and Brian.", greeting);
     }
 
     @Test
-    public void greenWhenMultipleNamesBobAndCharlie() {
+    public void greetWhenTwoNamesBobAndCharlie() {
         String greeting = new Greeter().greet(new String[]{"Bob", "Charlie"});
         assertEquals("Hello, Bob and Charlie.", greeting);
     }
+
+
 
 }
