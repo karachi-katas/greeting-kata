@@ -21,6 +21,9 @@ public class Greet {
     }
 
     private static final Map<CASE, Strategy> strategies = new HashMap<>();
+    private final String NULL_CASE = "Hello, my friend.";
+    private final String CASE_SEPARATOR = " AND ";
+
 
     Greet() {
         strategies.put(CASE.UPPER, new Strategy("HELLO", "", "AND", "!"));
@@ -30,7 +33,7 @@ public class Greet {
     public String greet(String... names) {
 
         if (names == null) {
-            return "Hello, my friend.";
+            return NULL_CASE;
         }
 
         names = preProcess(names);
@@ -72,7 +75,7 @@ public class Greet {
             greeting.append(greetMultipleNames(defaultCaseNames.toArray(new String[0])));
         }
         if (isExists(defaultCaseNames) && isExists(upperCaseNames)) {
-            greeting.append(" AND ");
+            greeting.append(CASE_SEPARATOR);
         }
         if (isExists(upperCaseNames)) {
             greeting.append(greetMultipleNames(upperCaseNames.toArray(new String[0])));
