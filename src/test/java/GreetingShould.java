@@ -1,8 +1,10 @@
 import org.junit.Test;
 
+import java.util.Collections;
+
 import static org.junit.Assert.assertEquals;
 
-public class FooTest {
+public class GreetingShould {
 
     @Test
     public void greetBob() {
@@ -18,7 +20,7 @@ public class FooTest {
 
     @Test
     public void greetNull() {
-        String greeting = new Greeting().to(null);
+        String greeting = new Greeting().to((String)null);
         assertEquals("Hello, my friend.", greeting);
     }
 
@@ -26,5 +28,11 @@ public class FooTest {
     public void shout() {
         String greeting = new Greeting().to("JERRY");
         assertEquals("HELLO JERRY!", greeting);
+    }
+
+    @Test
+    public void greedTwoNames() {
+        String greeting = new Greeting().to(new String[]{"Jill", "Jane"});
+        assertEquals("Hello, Jill and Jane.", greeting);
     }
 }

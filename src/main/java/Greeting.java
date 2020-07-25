@@ -13,4 +13,8 @@ public class Greeting {
 
         return prefix +  name + postfix;
     }
+
+    public String to(String[] args) {
+        return "Hello, " + args[0] + " and " + args[1] + ".";
+    }
 }
