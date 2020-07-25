@@ -41,6 +41,11 @@ public class GreeterTest {
         assertEquals("Hello, Bob and Charlie.", greeting);
     }
 
-
+    @Test
+    public void greetWhenMulitpleNames()
+    {
+        String greeting = new Greeter().greet(new String[]{"Amy", "Brian", "Charlotte"});
+        assertEquals("Hello, Amy, Brian, and Charlotte.", greeting);
+    }
 
 }
