@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.util.StringUtils;
+
 public class Greeting {
 
     public static String greet() {
@@ -8,6 +10,9 @@ public class Greeting {
     public static String greet(String name) {
         if (name==null){
             return "Hello, my friend.";
+        }
+        if(name.equals(name.toUpperCase())){
+            return "HELLO "+name+"!";
         }
         return "Hello, " + name + ".";
 

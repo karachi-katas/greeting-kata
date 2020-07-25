@@ -24,4 +24,10 @@ public class FooTest {
         String greetings =Greeting.greet(null);
         assertEquals("Hello, my friend.",greetings);
     }
+
+    @Test
+    public void greetingWhenShouting(){
+        String greetings =Greeting.greet("JERRY");
+        assertEquals("HELLO JERRY!",greetings);
+    }
 }
