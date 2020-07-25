@@ -38,5 +38,12 @@ public class GreetingTest {
         assertEquals("Hello, Jill and Jane.", greetings);
     }
 
+    @Test
+    public void greetingWhenManyNames(){
+        String[] name = {"Jill","Jane","Brian"};
+        String greetings = Greeting.greet(name);
+        assertEquals("Hello, Jill, Jane, and Brian.", greetings);
+    }
+
 
 }

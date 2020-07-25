@@ -24,6 +24,15 @@ public class Greeting {
         }
         if(name.length == 2){
             return  "Hello, " + name[0] + " and " + name[1] + ".";
+        } else if (name.length > 2){
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for( int i = 0; i < name.length -1; i++){
+                stringBuilder.append(name[i]).append(", ");
+            }
+            stringBuilder.append("and ").append(name[name.length-1]);
+            return  "Hello, "+ stringBuilder.toString() + ".";
+
         }
         return "";
     }
