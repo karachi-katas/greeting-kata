@@ -45,6 +45,25 @@ public class Greeting {
             else {
                 result.add(name);
             }
+        }
+        String []resultString = result.toArray(new String[result.size()]);
+        return resultString;
+    }
+
+    public String[] removeStringQuotesFromNames(String[] names) {
+        ArrayList<String> result = new ArrayList<String>();
+        for (String name : names) {
+
+            if (name.charAt(0) == '"') {
+                String tempResult = "";
+                for (int j = 1; j < name.length() - 1; j++) {
+                    tempResult += name.charAt(j);
+                }
+                result.add(tempResult);
+            }
+            else {
+                result.add(name);
+            }
 
         }
         String []resultString = result.toArray(new String[result.size()]);
@@ -53,6 +72,7 @@ public class Greeting {
 
     public String greet(String[] names) {
         names = removeCommaFromNames(names);
+        names = removeStringQuotesFromNames(names);
         ArrayList<String> normalNames = extractNormalNames(names);
         ArrayList<String> shoutedNames = extractShoutedNames(names);
 

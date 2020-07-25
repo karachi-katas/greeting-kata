@@ -96,6 +96,15 @@ public class GreetingShould {
         assertEquals("Hello, Rohaan, Amir, Naveed, and Ahmed.", greeting);
     }
 
+    @Test
+    public void greetPeopleNamesThatContainIntentionalComma() {
+        String [] names = {"Rohaan", "\"Amir\"", "Naveed, Ahmed",};
+        String greeting = new Greeting().greet(names);
+
+
+        assertEquals("Hello, Rohaan, Amir, Naveed, and Ahmed.", greeting);
+    }
+
 
 
 
