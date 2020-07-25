@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 public class GreetTest {
 
     @Test
-    public void testGreeting() {
+    public void testLowerCaseGreeting() {
 
         String result = new Greet().greet("Bob");
         assertEquals("Hello, Bob.", result);
@@ -17,4 +17,12 @@ public class GreetTest {
         String result = new Greet().greet(null);
         assertEquals("Hello, my friend.", result);
     }
+
+    @Test
+    public void testUpperCaseGreeting() {
+
+        String result = new Greet().greet("BOB");
+        assertEquals("HELLO BOB!", result);
+    }
+
 }
