@@ -9,4 +9,10 @@ public class FooTest {
         assertEquals(1, 1);
     }
 
+    @Test
+    public void CreateSingleGreeting(){
+        String greetings = Greeting.greet();
+    }
+
+
 }
