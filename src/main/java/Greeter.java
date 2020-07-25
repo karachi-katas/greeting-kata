@@ -10,7 +10,7 @@ public class Greeter {
     }
 
     public String greet(String[] names) {
-        return "Hello, Amy and Brian.";
+        return "Hello, " + names[0] + " and " + names[1] + ".";
     }
 
     private boolean isUppercase(String text) {
