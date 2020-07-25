@@ -1,24 +1,18 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Greet {
-
-//    public String greet(String name) {
-//        if (name == null) {
-//            return "Hello, my friend.";
-//        }
-//        if (isUpperCase(name)){
-//            return "HELLO " + name + "!";
-//        }
-//        return "Hello, " + name + ".";
-//    }
 
     public String greet (String... names){
 
         if (names == null) {
             return "Hello, my friend.";
         }
+
+        names = preProcess(names);
+
         if (names.length == 1 && isUpperCase(names[0])){
             return "HELLO " + names[0] + "!";
         }
@@ -75,4 +69,21 @@ public class Greet {
     private boolean isUpperCase(String text) {
         return text.equals(text.toUpperCase());
     }
+
+    private String[] preProcess(String... names){
+        List<String> processedNames = new ArrayList<String>();
+
+        for (String name : names){
+            if (name.contains(",")){
+                processedNames.addAll(Arrays.asList(name.split(",\\s*")));
+            }
+            else {
+                processedNames.add(name.trim());
+            }
+        }
+
+        return processedNames.toArray(new String[0]);
+    }
+
+
 }

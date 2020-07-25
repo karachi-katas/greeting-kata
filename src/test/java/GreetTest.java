@@ -38,4 +38,11 @@ public class GreetTest {
         String result = new Greet().greet("Mehdi", "Wadeed", "RAFAY");
         assertEquals("Hello, Mehdi and Wadeed. AND HELLO RAFAY!", result);
     }
+
+    @Test
+    public void testCommaValuesGreetings() {
+
+        String result = new Greet().greet("Mehdi, Wadeed", "Rafay");
+        assertEquals("Hello, Mehdi, Wadeed and Rafay.", result);
+    }
 }
