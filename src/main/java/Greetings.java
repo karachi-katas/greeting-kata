@@ -7,7 +7,7 @@ public class Greetings {
         if (isUpperCase(name)) {
             return "HELLO " + name + "!";
         }
-        return "Hello, " + name +".";
+        return "Hello, " + name + ".";
     }
 
     private boolean isUpperCase(String name) {
@@ -15,6 +15,18 @@ public class Greetings {
     }
 
     public String greet(String[] names) {
-        return String.format("Hello, %s and %s.", names[0], names[1]);
+
+        if (names.length == 2) {
+            return String.format("Hello, %s and %s.", names[0], names[1]);
+        }
+
+        String greet = "Hello, ";
+        for (int itr=0; itr< names.length-1; itr++) {
+            greet = greet + names[itr]+", ";
+        }
+
+        greet = greet + "and " + names[names.length-1] +".";
+        return greet;
+
     }
 }
