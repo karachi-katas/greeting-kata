@@ -20,13 +20,13 @@ public class Greetings {
             return String.format("Hello, %s and %s.", names[0], names[1]);
         }
 
-        String greet = "Hello, ";
+        StringBuilder greet = new StringBuilder("Hello, ");
         for (int itr=0; itr< names.length-1; itr++) {
-            greet = greet + names[itr]+", ";
+            greet.append(names[itr]).append(", ");
         }
 
-        greet = greet + "and " + names[names.length-1] +".";
-        return greet;
+        greet.append("and ").append(names[names.length - 1]).append(".");
+        return greet.toString();
 
     }
 }
