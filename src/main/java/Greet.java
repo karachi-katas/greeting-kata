@@ -4,9 +4,13 @@ public class Greet {
         if (name == null) {
             return "Hello, my friend.";
         }
-        if (name.equals(name.toUpperCase())){
+        if (isUpperCase(name)){
             return "HELLO " + name + "!";
         }
         return "Hello, " + name + ".";
+    }
+
+    private boolean isUpperCase(String text) {
+        return text.equals(text.toUpperCase());
     }
 }
