@@ -35,7 +35,7 @@ public class GreetingTest {
     public void greetingWhenTwoNames(){
         String[] name = {"Jill","Jane"};
         String greetings = Greeting.greet(name);
-        assertEquals("Hello, Jill and Jane.", greetings);
+        assertEquals("Hello, Jill, and Jane.", greetings);
     }
 
     @Test
