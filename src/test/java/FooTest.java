@@ -21,4 +21,10 @@ public class FooTest {
         String greeting = new Greeting().to(null);
         assertEquals("Hello, my friend.", greeting);
     }
+
+    @Test
+    public void shout() {
+        String greeting = new Greeting().to("JERRY");
+        assertEquals("HELLO JERRY!", greeting);
+    }
 }
