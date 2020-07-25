@@ -18,7 +18,8 @@ public class GreeterTest {
 
     @Test
     public void greetFriendWhenNull() {
-        String greeting = new Greeter().greet(null);
+        String name = null;
+        String greeting = new Greeter().greet(name);
         assertEquals("Hello, my friend.", greeting);
     }
 
@@ -26,6 +27,12 @@ public class GreeterTest {
     public void greetWhenUpper() {
         String greeting = new Greeter().greet("JERRY");
         assertEquals("HELLO, JERRY!", greeting);
+    }
+
+    @Test
+    public void greenWhenMultipleNames() {
+        String greeting = new Greeter().greet(new String[]{"Amy", "Brian"});
+        assertEquals("Hello, Amy and Brian.", greeting);
     }
 
 }
