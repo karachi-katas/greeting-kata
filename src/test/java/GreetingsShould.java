@@ -45,4 +45,20 @@ public class GreetingsShould {
         String greetingsMessage = new Greetings().greet(names);
         assertEquals("Hello, Amy and Charlotte. AND HELLO BRIAN!", greetingsMessage);
     }
+
+    @Test
+    public void greetNamesContainingComma() {
+        String[] names = {"Bob", "Charlie, Dianne"};
+        String greetingsMessage = new Greetings().greet(names);
+        assertEquals("Hello, Bob, Charlie, and Dianne.", greetingsMessage);
+    }
+
+    @Test
+    public void greetNamesContainingCommaWithNoSpace() {
+        String[] names = {"Bob", "Jazib,Charlie, Dianne"};
+        String greetingsMessage = new Greetings().greet(names);
+        assertEquals("Hello, Bob, Jazib, Charlie, and Dianne.", greetingsMessage);
+    }
+
+
 }

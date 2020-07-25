@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,6 +27,8 @@ public class Greetings {
             return greetForUpperCase(names);
         }
 
+        names = splitNameIfContainingCommas(names);
+
         if (names.length == 2) {
             return String.format("Hello, %s and %s.", names[0], names[1]);
         }
@@ -37,6 +42,15 @@ public class Greetings {
         return greet.toString();
 
 
+    }
+
+    private String[] splitNameIfContainingCommas(String[] names) {
+        List<String> namesList = new ArrayList<String>();
+        for (String name : names) {
+            namesList.addAll(Arrays.asList(name.replaceAll(" ","")
+                .split(",")));
+        }
+        return namesList.toArray(new String[0]);
     }
 
     private String greetForUpperCase(String[] names) {
