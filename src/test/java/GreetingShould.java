@@ -34,4 +34,14 @@ public class GreetingShould {
         assertEquals("Hello, my friend.", greeting);
     }
 
+    @Test
+    public void greetUpperCase() {
+        String greeting = new Greeting().greet("ROHAAN");
+
+        assertEquals("HELLO ROHAAN!", greeting);
+    }
+
+
+
+
 }
