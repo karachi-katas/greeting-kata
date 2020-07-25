@@ -45,5 +45,14 @@ public class GreetingTest {
         assertEquals("Hello, Jill, Jane, and Brian.", greetings);
     }
 
+    @Test
+    public void greetingWhenManyNamesMixedWithShouting(){
+        String[] name = {"Amy","BRIAN","Charlotte"};
+        String greetings = Greeting.greet(name);
+        assertEquals("Hello, Amy, and Charlotte. AND HELLO BRIAN!", greetings);
+    }
+
+
+
 
 }
