@@ -5,11 +5,6 @@ import static org.junit.Assert.assertEquals;
 public class GreetingsShould {
 
     @Test
-    public void bar() {
-        assertEquals(1, 1);
-    }
-
-    @Test
     public void greetBob(){
         String name = "Bob";
         String greetingsMessage = new Greetings().greet(name);
@@ -21,5 +16,12 @@ public class GreetingsShould {
         String name = null;
         String greetingsMessage = new Greetings().greet(name);
         assertEquals("Hello, my friend.", greetingsMessage);
+    }
+
+    @Test
+    public void shoutUpperCase() {
+        String name = "JERRY";
+        String greetingsMessage = new Greetings().greet(name);
+        assertEquals("HELLO JERRY!", greetingsMessage);
     }
 }
