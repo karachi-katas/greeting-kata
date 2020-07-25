@@ -17,35 +17,33 @@ public class Greeting {
             return "HELLO " + name + "!";
         }
         return "Hello, " + name + ".";
-
     }
 
-    private static boolean isUpperCase(String name) {
-        return name.equals(name.toUpperCase());
-    }
 
     public static String greet(String[] name) {
         if (name == null) {
             return "Hello, my friend.";
         }
-        List<String> normalNames=Arrays.stream(name).filter(item->!isUpperCase(item)).collect(Collectors.toList());
-        List<String> shoutingNames=Arrays.stream(name).filter(item->isUpperCase(item)).collect(Collectors.toList());
-        StringBuilder normalNameBuilder = getNamesToGreetBuilder(name, normalNames, );
-        StringBuilder shoutingNamesBuilder = getNamesToGreetBuilder(name, shoutingNames, );
 
-        String greeting = "Hello, " + normalNameBuilder.toString() + ".";
-        if (shoutingNames.size() > 0) {
-            greeting = greeting + " AND HELLO " + shoutingNamesBuilder.toString() + "!";
+        List<String> normalNames = Arrays.stream(name).filter(item->!isUpperCase(item)).collect(Collectors.toList());
+        List<String> shoutingNames = Arrays.stream(name).filter(Greeting::isUpperCase).collect(Collectors.toList());
+
+        String normalNameToGreet = getNamesToGreet(normalNames) ;
+        String shoutingNamesToGreet = getNamesToGreet(shoutingNames );
+
+        String greeting = "Hello, " + normalNameToGreet + ".";
+        if(shoutingNamesToGreet.length() > 0){
+            greeting = greeting + " AND HELLO " + shoutingNamesToGreet + "!";
         }
         return greeting;
     }
 
-    private static String getNamesToGreetBuilKder(String[] name, List<String> namesToGreet, boolean isShouting) {
+    private static String getNamesToGreet(List<String> namesToGreet) {
 
         StringBuilder namesToGreetBuilder = new StringBuilder();
 
         for (int i = 0; i < namesToGreet.size() - 1; i++) {
-            namesToGreetBuilder.append(name[i]).append(", ");
+            namesToGreetBuilder.append(namesToGreet.get(i)).append(", ");
         }
         if (namesToGreet.size() > 1) {
             namesToGreetBuilder.append("and ");
@@ -53,11 +51,11 @@ public class Greeting {
         if (namesToGreet.size() > 0) {
             namesToGreetBuilder.append(namesToGreet.get(namesToGreet.size() - 1));
         }
-        if(isShouting)
-             return "HELLO " + namesToGreet.toString() + "!";
-        else
-            return "Hello, " + namesToGreet.toString() + ".";
+        return namesToGreetBuilder.toString();
 
+    }
 
+    private static boolean isUpperCase(String name) {
+        return name.equals(name.toUpperCase());
     }
 }
