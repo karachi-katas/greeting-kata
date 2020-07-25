@@ -25,4 +25,10 @@ public class GreetTest {
         assertEquals("HELLO BOB!", result);
     }
 
+    @Test
+    public void testLowerCaseMultipleGreetings() {
+
+        String result = new Greet().greet("Mehdi", "Wadeed", "Rafay");
+        assertEquals("Hello, Mehdi, Wadeed and Rafay.", result);
+    }
 }
