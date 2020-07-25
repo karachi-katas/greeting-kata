@@ -5,8 +5,9 @@ import static org.junit.Assert.assertEquals;
 public class FooTest {
 
     @Test
-    public void bar() {
-        assertEquals(1, 1);
+    public void greetShaheer() {
+        String greeting = new Greeter().greet("Shaheer");
+        assertEquals("Hello, Shaheer.", greeting);
     }
 
 }
