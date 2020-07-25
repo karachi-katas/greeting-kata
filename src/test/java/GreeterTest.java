@@ -16,6 +16,12 @@ public class GreeterTest {
         assertEquals("Hello, Amar.", greeting);
     }
 
+    @Test
+    public void greetFriendWhenNull() {
+        String greeting = new Greeter().greet(null);
+        assertEquals("Hello, my friend.", greeting);
+    }
+
 
 
 }
