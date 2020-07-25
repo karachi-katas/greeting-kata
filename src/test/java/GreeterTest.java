@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertEquals;
 
 public class GreeterTest {
@@ -31,21 +33,27 @@ public class GreeterTest {
 
     @Test
     public void greetWhenTwoNamesAmyAndBrian() {
-        String greeting = new Greeter().greet(new String[]{"Amy", "Brian"});
+        String greeting = new Greeter().greet(Arrays.asList("Amy", "Brian"));
         assertEquals("Hello, Amy and Brian.", greeting);
     }
 
     @Test
     public void greetWhenTwoNamesBobAndCharlie() {
-        String greeting = new Greeter().greet(new String[]{"Bob", "Charlie"});
+        String greeting = new Greeter().greet(Arrays.asList("Bob", "Charlie"));
         assertEquals("Hello, Bob and Charlie.", greeting);
     }
 
     @Test
     public void greetWhenMulitpleNames()
     {
-        String greeting = new Greeter().greet(new String[]{"Amy", "Brian", "Charlotte"});
+        String greeting = new Greeter().greet(Arrays.asList("Amy", "Brian", "Charlotte"));
         assertEquals("Hello, Amy, Brian, and Charlotte.", greeting);
     }
 
+    @Test
+    public void abc()
+    {
+        String greeting = new Greeter().greet(Arrays.asList("Amy", "BRIAN", "Charlotte"));
+        assertEquals("Hello, Amy and Charlotte. AND HELLO BRIAN!", greeting);
+    }
 }

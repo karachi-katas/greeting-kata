@@ -1,4 +1,8 @@
-import java.util.Arrays;
+
+import java.util.List;
+
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Greeter {
     public String greet(String name) {
@@ -11,17 +15,67 @@ public class Greeter {
         return "Hello, " + name + ".";
     }
 
-    public String greet(String[] names)
+    public String greet(List<String> names)
     {
-        if (names.length == 2)
-        {
-            return "Hello, " + names[0] + " and " + names[1] + ".";
+        List<String> notUpperCaseNames = names.stream().filter(not(this::isUppercase)).collect(Collectors.toList());
+
+        String notUpperCaseString = "";
+        if (notUpperCaseNames.size() != 0) {
+            notUpperCaseString = getGreetedNames(notUpperCaseNames);
         }
 
-        String lastName = names[names.length - 1];
-        String[] lastRemovedNames = Arrays.copyOf(names, names.length - 1);
-        return String.format("Hello, %s, and %s.", String.join(", ", lastRemovedNames), lastName);
+        List<String> upperCaseNames = names.stream().filter(this::isUppercase).collect(Collectors.toList());
+        String upperCaseString = "";
+        if (upperCaseNames.size() != 0) {
+            upperCaseString = getShoutedNames(upperCaseNames);
+        }
 
+        if (!upperCaseString.isEmpty() && !notUpperCaseString.isEmpty())
+        {
+            return notUpperCaseString + " AND " + upperCaseString;
+        }
+        else
+        {
+            return notUpperCaseString + upperCaseString;
+        }
+    }
+
+    public String getShoutedNames(List<String> names)
+    {
+        if (names.size() == 1)
+            return "HELLO " + names.get(0) + "!";
+        else if (names.size() == 2)
+            return "HELLO, " + names.get(0) + " and " + names.get(1) + "!";
+        else
+        {
+            return "HELLO, " + getJoinedNames(names) + "!";
+        }
+    }
+
+    public String getGreetedNames(List<String> names)
+    {
+        if (names.size() == 1)
+            return "Hello " + names.get(0) + ".";
+        else if (names.size() == 2)
+            return "Hello, " + names.get(0) + " and " + names.get(1) + ".";
+        else
+        {
+            return "Hello, " + getJoinedNames(names) + ".";
+        }
+    }
+
+    public static <T> Predicate<T> not(Predicate<T> t) {
+        return t.negate();
+    }
+
+
+    private String getJoinedNames(List<String> names) {
+        int size = names.size();
+        String lastName = names.get(size - 1);
+        if (size == 1)
+            return lastName;
+        List<String> lastRemovedNames = names.subList(0, size - 1);
+        return String.format("%s, and %s", String.join(", ", lastRemovedNames), lastName);
     }
 
 
