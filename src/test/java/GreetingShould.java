@@ -35,4 +35,10 @@ public class GreetingShould {
         String greeting = new Greeting().to(new String[]{"Jill", "Jane"});
         assertEquals("Hello, Jill and Jane.", greeting);
     }
+
+    @Test
+    public void greetThreeNames() {
+        String greeting = new Greeting().to(new String[]{"Amy", "Brian", "Charlotte"});
+        assertEquals("Hello, Amy, Brian, and Charlotte.", greeting);
+    }
 }

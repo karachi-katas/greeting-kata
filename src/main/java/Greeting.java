@@ -21,6 +21,9 @@ public class Greeting {
         if (names.length == 1) {
             return to(names[0]);
         }
+        if (names.length > 2) {
+            return to(names[0] + ", " + names[1] + ",", names[2]);
+        }
         return "Hello, " + names[0] + " and " + names[1] + ".";
     }
 }
