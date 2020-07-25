@@ -72,6 +72,14 @@ public class GreetingShould {
         assertEquals("Hello, Rohaan, Naveed, Amir, and Ahmed.", greeting);
     }
 
+    @Test
+    public void greet3PeopleWithShoutedAndNormalNames() {
+        String [] names = {"Rohaan", "NAVEED", "Amir"};
+        String greeting = new Greeting().greet(names);
+
+        assertEquals("Hello, Rohaan and Amir. AND HELLO NAVEED!", greeting);
+    }
+
 
 
 

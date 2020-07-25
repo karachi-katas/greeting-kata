@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class Greeting {
 
-    public boolean isUpperCase (String name) {
+    public boolean isUpperCase(String name) {
         for (int i = 0; i < name.length(); i++) {
             if (name.charAt(i) < 'A' || name.charAt(i) > 'Z') {
                 return false;
@@ -9,25 +11,69 @@ public class Greeting {
         return true;
     }
 
-    public String greet(String[] names) {
-        if (names.length > 2) {
+    public String greetingForNormalNames(ArrayList<String> names) {
+
+        if (names.size() > 2) {
             String result = "Hello, ";
-            for (int i = 0; i < names.length - 1; i++) {
-                result += names[i] + ", ";
+            for (int i = 0; i < names.size() - 1; i++) {
+                result += names.get(i) + ", ";
             }
-            result += "and " + names[names.length-1] + ".";
+            result += "and " + names.get(names.size() - 1) + ".";
             return result;
         }
 
-        if (names.length == 2) {
-            return "Hello, " + names[0] + " and " + names[1] + ".";
+
+        if (names.size() == 2) {
+            return "Hello, " + names.get(0) + " and " + names.get(1) + ".";
         }
-        if (names.length == 0) {
-            return "Hello, my friend.";
+
+        return "Hello, " + names.get(0) + ".";
+    }
+
+    public String greetingForShoutedNames(ArrayList<String> names) {
+        return "HELLO " + names.get(0) + "!";
+    }
+
+    public String greet(String[] names) {
+        ArrayList<String> normalNames = extractNormalNames(names);
+        ArrayList<String> shoutedNames = extractShoutedNames(names);
+
+        if (normalNames.size() > 0 && shoutedNames.size() > 0) {
+            String normalGreetings = greetingForNormalNames(normalNames);
+            String shoutedGreetings = greetingForShoutedNames(shoutedNames);
+            return normalGreetings + " AND " + shoutedGreetings;
         }
-        if (isUpperCase(names[0])) {
-            return "HELLO " + names[0] +"!";
+
+        if (normalNames.size() > 0) {
+            String normalGreetings = greetingForNormalNames(normalNames);
+            return normalGreetings;
         }
-        return "Hello, " + names[0] + ".";
+
+        if (shoutedNames.size() > 0) {
+            String shoutedGreetings = greetingForShoutedNames(shoutedNames);
+            return shoutedGreetings;
+        }
+
+        return "Hello, my friend.";
+    }
+
+    private ArrayList<String> extractShoutedNames(String[] names) {
+        ArrayList<String> shoutedNames = new ArrayList<String>();
+        for (int i = 0; i < names.length; i++) {
+            if (isUpperCase(names[i])) {
+                shoutedNames.add(names[i]);
+            }
+        }
+        return shoutedNames;
+    }
+
+    private ArrayList<String> extractNormalNames(String[] names) {
+        ArrayList<String> normalNames = new ArrayList<String>();
+        for (int i = 0; i < names.length; i++) {
+            if (!isUpperCase(names[i])) {
+                normalNames.add(names[i]);
+            }
+        }
+        return normalNames;
     }
 }
