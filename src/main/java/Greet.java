@@ -23,6 +23,10 @@ public class Greet {
             return "Hello, " + names[0] + ".";
         }
 
+        return greetMultipleNames(names);
+    }
+
+    private String greetMultipleNames(String[] names) {
         StringBuilder greeting = new StringBuilder("Hello");
 
         for (int i = 0; i < names.length - 1; i++){
