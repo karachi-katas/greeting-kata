@@ -22,6 +22,10 @@ public class GreeterTest {
         assertEquals("Hello, my friend.", greeting);
     }
 
-
+    @Test
+    public void greetWhenUpper() {
+        String greeting = new Greeter().greet("JERRY");
+        assertEquals("HELLO, JERRY!", greeting);
+    }
 
 }
