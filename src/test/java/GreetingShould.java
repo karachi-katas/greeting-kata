@@ -6,39 +6,54 @@ public class GreetingShould {
 
     @Test
     public void greetBob() {
+        String [] names = {"Bob"};
         String name = "Bob";
 
-        String greeting = new Greeting().greet(name);
+        String greeting = new Greeting().greet(names);
 
         assertEquals("Hello, Bob.", greeting);
     }
 
     @Test
     public void greetAmir() {
-        String greeting = new Greeting().greet("Amir");
+        String [] names = {"Amir"};
+        String greeting = new Greeting().greet(names);
 
         assertEquals("Hello, Amir.", greeting);
     }
 
     @Test
     public void greetJazib() {
-        String greeting = new Greeting().greet("Jazib");
+        String [] names = {"Jazib"};
+        String greeting = new Greeting().greet(names);
 
         assertEquals("Hello, Jazib.", greeting);
     }
 
     @Test
     public void greetGuest() {
-        String greeting = new Greeting().greet(null);
+        String [] names = {};
+
+        String greeting = new Greeting().greet(names);
 
         assertEquals("Hello, my friend.", greeting);
     }
 
     @Test
     public void greetUpperCase() {
-        String greeting = new Greeting().greet("ROHAAN");
+        String [] names = {"ROHAAN"};
+
+        String greeting = new Greeting().greet(names);
 
         assertEquals("HELLO ROHAAN!", greeting);
+    }
+
+    @Test
+    public void greetTwoPeople() {
+        String [] names = {"Rohaan", "Naveed"};
+        String greeting = new Greeting().greet(names);
+
+        assertEquals("Hello, Rohaan and Naveed.", greeting);
     }
 
 

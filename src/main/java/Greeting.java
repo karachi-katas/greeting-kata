@@ -9,14 +9,18 @@ public class Greeting {
         return true;
     }
 
-    public String greet(String name) {
-        if (name == null) {
+    public String greet(String[] name) {
+        if (name.length == 2) {
+            return "Hello, " + name[0] + " and " + name[1] + ".";
+        }
+
+        if (name.length == 0) {
             return "Hello, my friend.";
         }
 
-        if (isUpperCase(name)) {
-            return "HELLO " + name +"!";
+        if (isUpperCase(name[0])) {
+            return "HELLO " + name[0] +"!";
         }
-        return "Hello, " + name + ".";
+        return "Hello, " + name[0] + ".";
     }
 }
