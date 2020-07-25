@@ -21,12 +21,9 @@ public class Greeting {
             result += "and " + names.get(names.size() - 1) + ".";
             return result;
         }
-
-
         if (names.size() == 2) {
             return "Hello, " + names.get(0) + " and " + names.get(1) + ".";
         }
-
         return "Hello, " + names.get(0) + ".";
     }
 
@@ -34,7 +31,28 @@ public class Greeting {
         return "HELLO " + names.get(0) + "!";
     }
 
+    public String[] removeCommaFromNames(String [] names) {
+        ArrayList<String> result = new ArrayList<String>();
+
+        for(String name : names) {
+            if (name.contains(", ")) {
+                String []splitted_names = name.split(", ");
+                for (String splittedName : splitted_names) {
+
+                    result.add(splittedName);
+                }
+            }
+            else {
+                result.add(name);
+            }
+
+        }
+        String []resultString = result.toArray(new String[result.size()]);
+        return resultString;
+    }
+
     public String greet(String[] names) {
+        names = removeCommaFromNames(names);
         ArrayList<String> normalNames = extractNormalNames(names);
         ArrayList<String> shoutedNames = extractShoutedNames(names);
 

@@ -80,6 +80,22 @@ public class GreetingShould {
         assertEquals("Hello, Rohaan and Amir. AND HELLO NAVEED!", greeting);
     }
 
+    @Test
+    public void greetPeopleNamesThatContainCommaInBetween() {
+        String [] names = {"Rohaan", "Naveed, Ahmed", "Amir"};
+        String greeting = new Greeting().greet(names);
+
+        assertEquals("Hello, Rohaan, Naveed, Ahmed, and Amir.", greeting);
+    }
+
+    @Test
+    public void greetPeopleNamesThatContainCommaInLastTwoNames() {
+        String [] names = {"Rohaan", "Amir", "Naveed, Ahmed",};
+        String greeting = new Greeting().greet(names);
+
+        assertEquals("Hello, Rohaan, Amir, Naveed, and Ahmed.", greeting);
+    }
+
 
 
 
