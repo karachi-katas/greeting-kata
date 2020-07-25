@@ -27,4 +27,11 @@ public class GreetingShould {
         assertEquals("Hello, Jazib.", greeting);
     }
 
+    @Test
+    public void greetGuest() {
+        String greeting = new Greeting().greet(null);
+
+        assertEquals("Hello, my friend.", greeting);
+    }
+
 }
