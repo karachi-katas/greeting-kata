@@ -1,4 +1,3 @@
-
 import java.util.List;
 
 import java.util.function.Predicate;
@@ -17,19 +16,13 @@ public class Greeter {
 
     public String greet(List<String> names)
     {
-        List<String> notUpperCaseNames = names.stream().filter(not(this::isUppercase)).collect(Collectors.toList());
+        String notUpperCaseString = getNotUpperCaseNamesGreeting(names);
+        String upperCaseString = getUpperCaseNamesGreeting(names);
 
-        String notUpperCaseString = "";
-        if (notUpperCaseNames.size() != 0) {
-            notUpperCaseString = getGreetedNames(notUpperCaseNames);
-        }
+        return getMergedUpperAndNotUpperCaseGreeting(notUpperCaseString, upperCaseString);
+    }
 
-        List<String> upperCaseNames = names.stream().filter(this::isUppercase).collect(Collectors.toList());
-        String upperCaseString = "";
-        if (upperCaseNames.size() != 0) {
-            upperCaseString = getShoutedNames(upperCaseNames);
-        }
-
+    private String getMergedUpperAndNotUpperCaseGreeting(String notUpperCaseString, String upperCaseString) {
         if (!upperCaseString.isEmpty() && !notUpperCaseString.isEmpty())
         {
             return notUpperCaseString + " AND " + upperCaseString;
@@ -38,6 +31,24 @@ public class Greeter {
         {
             return notUpperCaseString + upperCaseString;
         }
+    }
+
+    private String getUpperCaseNamesGreeting(List<String> names) {
+        List<String> upperCaseNames = names.stream().filter(this::isUppercase).collect(Collectors.toList());
+        String upperCaseString = "";
+        if (upperCaseNames.size() != 0) {
+            upperCaseString = getShoutedNames(upperCaseNames);
+        }
+        return upperCaseString;
+    }
+
+    private String getNotUpperCaseNamesGreeting(List<String> names) {
+        List<String> notUpperCaseNames = names.stream().filter(not(this::isUppercase)).collect(Collectors.toList());
+        String notUpperCaseString = "";
+        if (notUpperCaseNames.size() != 0) {
+            notUpperCaseString = getGreetedNames(notUpperCaseNames);
+        }
+        return notUpperCaseString;
     }
 
     public String getShoutedNames(List<String> names)
