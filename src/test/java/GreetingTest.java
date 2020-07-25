@@ -2,7 +2,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class FooTest {
+public class GreetingTest {
 
     @Test
     public void bar() {
@@ -21,7 +21,7 @@ public class FooTest {
     }
     @Test
     public void greetingNull(){
-        String greetings =Greeting.greet(null);
+        String greetings =Greeting.greet((String) null);
         assertEquals("Hello, my friend.",greetings);
     }
 
@@ -30,4 +30,13 @@ public class FooTest {
         String greetings =Greeting.greet("JERRY");
         assertEquals("HELLO JERRY!",greetings);
     }
+
+    @Test
+    public void greetingWhenTwoNames(){
+        String[] name = {"Jill","Jane"};
+        String greetings = Greeting.greet(name);
+        assertEquals("Hello, Jill and Jane.", greetings);
+    }
+
+
 }
