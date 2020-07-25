@@ -14,5 +14,9 @@ public class FooTest {
         String greetings = Greeting.greet();
     }
 
-
+    @Test
+    public void SingleGreeting() {
+        String greetings = Greeting.greet("Bob");
+        assertEquals("Hello, Bob.", greetings);
+    }
 }

@@ -4,4 +4,9 @@ public class Greeting {
         return null;
 
     }
+
+    public static String greet(String name) {
+        return "Hello, " + name + ".";
+
+    }
 }
