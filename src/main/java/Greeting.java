@@ -1,6 +1,6 @@
 public class Greeting {
 
-    public String to(String name) {
+    private String to(String name) {
         name = name == null ? "my friend" : name;
 
         String prefix = "Hello, ";
@@ -14,7 +14,13 @@ public class Greeting {
         return prefix +  name + postfix;
     }
 
-    public String to(String[] args) {
-        return "Hello, " + args[0] + " and " + args[1] + ".";
+    public String to(String... names) {
+        if (names == null) {
+            return to((String) null);
+        }
+        if (names.length == 1) {
+            return to(names[0]);
+        }
+        return "Hello, " + names[0] + " and " + names[1] + ".";
     }
 }

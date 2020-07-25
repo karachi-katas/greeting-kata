@@ -20,7 +20,7 @@ public class GreetingShould {
 
     @Test
     public void greetNull() {
-        String greeting = new Greeting().to((String)null);
+        String greeting = new Greeting().to((null));
         assertEquals("Hello, my friend.", greeting);
     }
 
@@ -31,7 +31,7 @@ public class GreetingShould {
     }
 
     @Test
-    public void greedTwoNames() {
+    public void greetTwoNames() {
         String greeting = new Greeting().to(new String[]{"Jill", "Jane"});
         assertEquals("Hello, Jill and Jane.", greeting);
     }
