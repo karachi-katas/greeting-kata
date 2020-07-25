@@ -11,4 +11,10 @@ public class GreetTest {
         assertEquals("Hello, Bob.", result);
     }
 
+    @Test
+    public void testNullGreeting() {
+
+        String result = new Greet().greet(null);
+        assertEquals("Hello, my friend.", result);
+    }
 }
