@@ -19,4 +19,9 @@ public class FooTest {
         String greetings = Greeting.greet("Bob");
         assertEquals("Hello, Bob.", greetings);
     }
+    @Test
+    public void greetingNull(){
+        String greetings =Greeting.greet(null);
+        assertEquals("Hello, my friend.",greetings);
+    }
 }
