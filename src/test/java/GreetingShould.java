@@ -13,4 +13,18 @@ public class GreetingShould {
         assertEquals("Hello, Bob.", greeting);
     }
 
+    @Test
+    public void greetAmir() {
+        String greeting = new Greeting().greet("Amir");
+
+        assertEquals("Hello, Amir.", greeting);
+    }
+
+    @Test
+    public void greetJazib() {
+        String greeting = new Greeting().greet("Jazib");
+
+        assertEquals("Hello, Jazib.", greeting);
+    }
+
 }
