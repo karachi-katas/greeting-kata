@@ -1,5 +1,5 @@
 public class Greeter {
-    public String greet(String shaheer) {
-        return "Hello, Shaheer.";
+    public String greet(String name) {
+        return "Hello, " + name + ".";
     }
 }

@@ -10,4 +10,12 @@ public class FooTest {
         assertEquals("Hello, Shaheer.", greeting);
     }
 
+    @Test
+    public void abc() {
+        String greeting = new Greeter().greet("Amar");
+        assertEquals("Hello, Amar.", greeting);
+    }
+
+
+
 }
