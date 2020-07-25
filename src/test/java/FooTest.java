@@ -9,11 +9,13 @@ public class FooTest {
         String greeting = new Greeting().to("Bob");
         assertEquals("Hello, Bob.", greeting);
     }
+
     @Test
     public void greetAhil() {
         String greeting = new Greeting().to("Ahil");
         assertEquals("Hello, Ahil.", greeting);
     }
+
     @Test
     public void greetNull() {
         String greeting = new Greeting().to(null);
