@@ -34,4 +34,10 @@ public class GreetingShould {
         assertEquals("Hello, Jill and Jane.", actual);
     }
 
+    @Test
+    public void sayHelloToThreeNames() {
+        String actual = new Greeting().to("Amy", "Brian", "Charlotte");
+        assertEquals("Hello, Amy, Brian, and Charlotte." , actual);
+    }
+
 }
