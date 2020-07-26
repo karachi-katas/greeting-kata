@@ -1,6 +1,5 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.stream.Stream;
 
 public class Greeting {
 
@@ -13,6 +12,12 @@ public class Greeting {
         }
         if (names.length == 2) {
             return to(String.format("%s and %s", names[0], names[1]));
+        }
+        if (Stream.of(names).anyMatch(this::shout)) {
+            String[] lowerCaseNames = Stream.of(names).filter(this::dontShout).toArray(String[]::new);
+            String[] upperCaseNames = Stream.of(names).filter(this::shout).toArray(String[]::new);
+
+            return String.format("%s AND %s", to(lowerCaseNames), to(upperCaseNames));
         }
         String joined = commaSeparate(names);
         return to(joined + ",", last(names));
@@ -39,5 +44,9 @@ public class Greeting {
 
     private boolean shout(String name) {
         return name.equals(name.toUpperCase());
+    }
+
+    private boolean dontShout(String name) {
+        return !shout(name);
     }
 }
