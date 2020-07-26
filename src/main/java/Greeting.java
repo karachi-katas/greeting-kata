@@ -1,6 +1,16 @@
 public class Greeting {
 
-    public String to(String name) {
+    public String to(String... names) {
+        if (names == null) {
+            return to((String) null);
+        }
+        if (names.length == 1) {
+            return to(names[0]);
+        }
+        return to(String.format("%s and %s", names[0], names[1]));
+    }
+
+    private String to(String name) {
         if (guest(name)) {
             return "Hello, my friend.";
         }
@@ -8,16 +18,6 @@ public class Greeting {
             return String.format("HELLO %s!", name);
         }
         return String.format("Hello, %s.", name);
-    }
-
-    public String to(String... names) {
-        if (names.length == 0) {
-            return to((String) null);
-        }
-        if (names.length == 1) {
-            return to(names[0]);
-        }
-        return to(String.format("%s and %s", names[0], names[1]));
     }
 
     private boolean shout(String name) {

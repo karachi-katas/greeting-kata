@@ -18,7 +18,7 @@ public class GreetingShould {
 
     @Test
     public void sayHelloToAGuest() {
-        String actual = new Greeting().to((String)null);
+        String actual = new Greeting().to(null);
         assertEquals("Hello, my friend.", actual);
     }
 
