@@ -10,13 +10,13 @@ public class Greeting {
         if (names.length == 1) {
             return to(names[0]);
         }
-        if (Stream.of(names).allMatch(this::shout)) {
+        if (names.length == 2 && allShout(names)) {
             return to(String.format("%s AND %s", names[0], names[1]));
         }
         if (names.length == 2) {
             return to(String.format("%s and %s", names[0], names[1]));
         }
-        if (atleastOneShout(names)) {
+        if (names.length > 2 && mixOfNormalAndShout(names)) {
             String[] lowerCaseNames = Stream.of(names).filter(this::dontShout).toArray(String[]::new);
             String[] upperCaseNames = Stream.of(names).filter(this::shout).toArray(String[]::new);
 
@@ -26,8 +26,13 @@ public class Greeting {
         return to(joined + ",", last(names));
     }
 
-    private boolean atleastOneShout(String[] names) {
-        return Stream.of(names).anyMatch(this::shout);
+    private boolean allShout(String[] names) {
+        return Stream.of(names).allMatch(this::shout);
+    }
+
+    private boolean mixOfNormalAndShout(String[] names) {
+        return Stream.of(names).anyMatch(this::shout) &&
+                Stream.of(names).anyMatch(this::dontShout);
     }
 
     private String last(String[] names) {
