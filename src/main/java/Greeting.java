@@ -10,10 +10,13 @@ public class Greeting {
         if (names.length == 1) {
             return to(names[0]);
         }
+        if (Stream.of(names).allMatch(this::shout)) {
+            return to(String.format("%s AND %s", names[0], names[1]));
+        }
         if (names.length == 2) {
             return to(String.format("%s and %s", names[0], names[1]));
         }
-        if (Stream.of(names).anyMatch(this::shout)) {
+        if (atleastOneShout(names)) {
             String[] lowerCaseNames = Stream.of(names).filter(this::dontShout).toArray(String[]::new);
             String[] upperCaseNames = Stream.of(names).filter(this::shout).toArray(String[]::new);
 
@@ -21,6 +24,10 @@ public class Greeting {
         }
         String joined = commaSeparate(names);
         return to(joined + ",", last(names));
+    }
+
+    private boolean atleastOneShout(String[] names) {
+        return Stream.of(names).anyMatch(this::shout);
     }
 
     private String last(String[] names) {

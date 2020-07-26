@@ -29,6 +29,12 @@ public class GreetingShould {
     }
 
     @Test
+    public void shoutAtTwoAllCapsName() {
+        String actual = new Greeting().to("TOM", "JERRY");
+        assertEquals("HELLO TOM AND JERRY!", actual);
+    }
+
+    @Test
     public void sayHelloToTwoNames() {
         String actual = new Greeting().to("Jill", "Jane");
         assertEquals("Hello, Jill and Jane.", actual);
