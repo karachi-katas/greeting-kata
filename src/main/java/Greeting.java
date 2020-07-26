@@ -14,8 +14,16 @@ public class Greeting {
         if (names.length == 2) {
             return to(String.format("%s and %s", names[0], names[1]));
         }
-        String joined = String.join(", ", Arrays.asList(names).subList(0, names.length - 1));
-        return to(joined + ",", names[names.length - 1]);
+        String joined = commaSeparate(names);
+        return to(joined + ",", last(names));
+    }
+
+    private String last(String[] names) {
+        return names[names.length - 1];
+    }
+
+    private String commaSeparate(String[] names) {
+        return String.join(", ", Arrays.asList(names).subList(0, names.length - 1));
     }
 
     private boolean guest(String[] names) {
