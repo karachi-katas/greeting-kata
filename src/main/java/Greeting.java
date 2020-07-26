@@ -7,10 +7,10 @@ public class Greeting {
         if (names.length == 1) {
             return to(names[0]);
         }
-        if (names.length == 3) {
-            return to(String.format("%s, %s,", names[0], names[1]), names[2]);
+        if (names.length == 2) {
+            return to(String.format("%s and %s", names[0], names[1]));
         }
-        return to(String.format("%s and %s", names[0], names[1]));
+        return to(String.format("%s, %s,", names[0], names[1]), names[2]);
     }
 
     private boolean guest(String[] names) {
