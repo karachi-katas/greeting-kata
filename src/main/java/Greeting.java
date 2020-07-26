@@ -7,10 +7,18 @@ public class Greeting {
         if (guest(names)) {
             return "Hello, my friend.";
         }
-        if (Stream.of(names).anyMatch(name -> name.contains(","))) {
-            names = Stream.of(names).flatMap(name -> Stream.of(name.split(","))).map(String::trim).toArray(String[]::new);
+        if (hasComma(names)) {
+            names = splitByComma(names);
         }
         return toRecursive(names);
+    }
+
+    private String[] splitByComma(String[] names) {
+        return Stream.of(names).flatMap(name -> Stream.of(name.split(","))).map(String::trim).toArray(String[]::new);
+    }
+
+    private boolean hasComma(String[] names) {
+        return Stream.of(names).anyMatch(name -> name.contains(","));
     }
 
     private String toRecursive(String... names) {
