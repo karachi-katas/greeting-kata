@@ -81,4 +81,10 @@ public class GreetingShould {
         String actual = new Greeting().to("BRIAN", "Charlotte", "TOM");
         assertEquals("Hello, Charlotte. AND HELLO BRIAN AND TOM!" , actual);
     }
+
+    @Test
+    public void mixArbitraryNormalAndArbitraryShout() {
+        String actual = new Greeting().to("Amy", "Tim", "BRIAN", "Charlotte", "BOB", "TOM");
+        assertEquals("Hello, Amy, Tim, and Charlotte. AND HELLO BRIAN, BOB, AND TOM!" , actual);
+    }
 }
