@@ -1,8 +1,8 @@
 public class Greeting {
 
     public String to(String... names) {
-        if (names == null) {
-            return to((String) null);
+        if (guest(names)) {
+            return "Hello, my friend.";
         }
         if (names.length == 1) {
             return to(names[0]);
@@ -10,10 +10,11 @@ public class Greeting {
         return to(String.format("%s and %s", names[0], names[1]));
     }
 
+    private boolean guest(String[] names) {
+        return names == null;
+    }
+
     private String to(String name) {
-        if (guest(name)) {
-            return "Hello, my friend.";
-        }
         if (shout(name)) {
             return String.format("HELLO %s!", name);
         }
@@ -22,9 +23,5 @@ public class Greeting {
 
     private boolean shout(String name) {
         return name.equals(name.toUpperCase());
-    }
-
-    private boolean guest(String name) {
-        return name == null;
     }
 }
