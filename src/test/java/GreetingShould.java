@@ -22,4 +22,10 @@ public class GreetingShould {
         assertEquals("Hello, my friend.", actual);
     }
 
+    @Test
+    public void shoutAtAnAllCapsName() {
+        String actual = new Greeting().to("JERRY");
+        assertEquals("HELLO JERRY!", actual);
+    }
+
 }
