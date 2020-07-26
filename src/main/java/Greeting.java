@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Greeting {
 
     public String to(String... names) {
@@ -10,7 +14,8 @@ public class Greeting {
         if (names.length == 2) {
             return to(String.format("%s and %s", names[0], names[1]));
         }
-        return to(String.format("%s, %s,", names[0], names[1]), names[2]);
+        String joined = String.join(", ", Arrays.asList(names).subList(0, names.length - 1));
+        return to(joined + ",", names[names.length - 1]);
     }
 
     private boolean guest(String[] names) {
