@@ -87,4 +87,10 @@ public class GreetingShould {
         String actual = new Greeting().to("Amy", "Tim", "BRIAN", "Charlotte", "BOB", "TOM");
         assertEquals("Hello, Amy, Tim, and Charlotte. AND HELLO BRIAN, BOB, AND TOM!" , actual);
     }
+
+    @Test
+    public void splitCommaSeparatedNames() {
+        String actual = new Greeting().to("Bob", "Charlie, Dianne");
+        assertEquals("Hello, Bob, Charlie, and Dianne.", actual);
+    }
 }

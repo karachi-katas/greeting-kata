@@ -7,23 +7,30 @@ public class Greeting {
         if (guest(names)) {
             return "Hello, my friend.";
         }
+        if (Stream.of(names).anyMatch(name -> name.contains(","))) {
+            names = Stream.of(names).flatMap(name -> Stream.of(name.split(","))).map(String::trim).toArray(String[]::new);
+        }
+        return toRecursive(names);
+    }
+
+    private String toRecursive(String... names) {
         if (names.length == 1) {
             return to(names[0]);
         }
         if (names.length == 2 && allShout(names)) {
-            return to(String.format("%s AND %s", names[0], names[1]));
+            return toRecursive(String.format("%s AND %s", names[0], names[1]));
         }
         if (names.length == 2) {
-            return to(String.format("%s and %s", names[0], names[1]));
+            return toRecursive(String.format("%s and %s", names[0], names[1]));
         }
         if (names.length > 2 && mixOfNormalAndShout(names)) {
             String[] lowerCaseNames = Stream.of(names).filter(this::dontShout).toArray(String[]::new);
             String[] upperCaseNames = Stream.of(names).filter(this::shout).toArray(String[]::new);
 
-            return String.format("%s AND %s", to(lowerCaseNames), to(upperCaseNames));
+            return String.format("%s AND %s", toRecursive(lowerCaseNames), toRecursive(upperCaseNames));
         }
         String joined = commaSeparate(names);
-        return to(joined + ",", last(names));
+        return toRecursive(joined + ",", last(names));
     }
 
     private boolean allShout(String[] names) {
