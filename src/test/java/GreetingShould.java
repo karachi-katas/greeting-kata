@@ -41,6 +41,12 @@ public class GreetingShould {
     }
 
     @Test
+    public void shoutAtArbitraryAllCapsNames() {
+        String actual = new Greeting().to("TOM", "JERRY", "NIBBLES", "SPIKE");
+        assertEquals("HELLO TOM, JERRY, NIBBLES, AND SPIKE!", actual);
+    }
+
+    @Test
     public void sayHelloToTwoNames() {
         String actual = new Greeting().to("Jill", "Jane");
         assertEquals("Hello, Jill and Jane.", actual);
