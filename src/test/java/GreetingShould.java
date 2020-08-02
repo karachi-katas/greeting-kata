@@ -40,4 +40,10 @@ public class GreetingShould {
         assertEquals("Hello, Amy, Brian, and Charlotte.", actual);
     }
 
+    @Test
+    public void greetMoreArbitraryNumberOfNames() {
+        String actual = new Greeting().to("Amy", "Brian", "Jan", "Charlotte");
+        assertEquals("Hello, Amy, Brian, Jan, and Charlotte.", actual);
+    }
+
 }
