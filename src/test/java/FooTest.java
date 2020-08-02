@@ -6,7 +6,8 @@ public class FooTest {
 
     @Test
     public void bar() {
-        assertEquals(1, 1);
+        String actual = new Greeting().to("Bob");
+        assertEquals("Hello, Bob.", actual);
     }
 
 }
