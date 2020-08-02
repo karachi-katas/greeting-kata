@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class Greeting {
 
@@ -48,7 +49,14 @@ public class Greeting {
 
     private String[] split(String[] names) {
         return Arrays.stream(names).flatMap(name -> Arrays
-                .stream(name.split(","))).map(String::trim).toArray(String[]::new);
+                .stream(split(name))).map(String::trim).toArray(String[]::new);
+    }
+
+    private String[] split(String name) {
+        if (name.startsWith("\"") && name.endsWith("\"")) {
+            return new String[] {name.replace("\"", "")};
+        }
+        return name.split(",");
     }
 
     private boolean csv(String[] names) {

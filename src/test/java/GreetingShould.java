@@ -60,8 +60,8 @@ public class GreetingShould {
 
     @Test
     public void splitNamesIfThereIsAComma() {
-        String actual = new Greeting().to("Bob", "Charlie, Dianne");
-        assertEquals("Hello, Bob, Charlie, and Dianne.", actual);
+        String actual = new Greeting().to("Bob", "\"Charlie, Dianne\"");
+        assertEquals("Hello, Bob and Charlie, Dianne.", actual);
     }
 
 }
