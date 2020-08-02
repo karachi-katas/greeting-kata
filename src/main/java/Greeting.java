@@ -29,6 +29,15 @@ public class Greeting {
             return greetOne(names[0]);
         }
 
+        if (Arrays.stream(names).anyMatch(name -> name.toUpperCase().equals(name)) &&
+                Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)).count() < names.length) {
+            String[] upperCaseNames = Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)).toArray(String[]::new);
+            String[] lowerCaseNames = Arrays.stream(names).filter(name -> !name.toUpperCase().equals(name)).toArray(String[]::new);
+            return "{lowerCase} AND {upperCase}"
+                    .replace("{lowerCase}", to(lowerCaseNames))
+                    .replace("{upperCase}", to(upperCaseNames));
+        }
+
         if (names.length >= 3) {
             String commaSeparatedNames = String.join(", ", Arrays.copyOfRange(names, 0, names.length - 1));
             return to(commaSeparatedNames + ",", names[names.length-1]);
