@@ -16,4 +16,10 @@ public class GreetingShould {
         assertEquals("Hello, Alice.", actual);
     }
 
+    @Test
+    public void greetGuest() {
+        String actual = new Greeting().to(null);
+        assertEquals("Hello, my friend.", actual);
+    }
+
 }
