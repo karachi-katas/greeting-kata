@@ -39,13 +39,20 @@ public class Greeting {
             return GUEST_GREETING;
         }
 
-        if (Arrays.stream(names).anyMatch(name -> name.contains(","))) {
-            String[] splitNames = Arrays.stream(names).flatMap(name -> Arrays
-                    .stream(name.split(","))).map(String::trim).toArray(String[]::new);
-            return to(splitNames);
+        if (csv(names)) {
+            return greetMany(split(names));
         }
 
         return greetMany(names);
+    }
+
+    private String[] split(String[] names) {
+        return Arrays.stream(names).flatMap(name -> Arrays
+                .stream(name.split(","))).map(String::trim).toArray(String[]::new);
+    }
+
+    private boolean csv(String[] names) {
+        return Arrays.stream(names).anyMatch(name -> name.contains(","));
     }
 
     private String greetMany(String... names) {
