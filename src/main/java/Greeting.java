@@ -31,9 +31,7 @@ public class Greeting {
 
         if (names.length >= 3) {
             String commaSeparatedNames = String.join(", ", Arrays.copyOfRange(names, 0, names.length - 1));
-            return "Hello, {commaSeparatedNames}, and {lastName}."
-                    .replace("{commaSeparatedNames}", commaSeparatedNames)
-                    .replace("{lastName}", names[names.length-1]);
+            return to(commaSeparatedNames + ",", names[names.length-1]);
         }
 
         return "Hello, {name1} and {name2}."
