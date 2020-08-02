@@ -1,6 +1,6 @@
 public class Greeting {
 
     public String to(String name) {
-        return "Hello, Bob.";
+        return "Hello, {name}.".replace("{name}", name);
     }
 }

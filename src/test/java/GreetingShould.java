@@ -10,4 +10,10 @@ public class GreetingShould {
         assertEquals("Hello, Bob.", actual);
     }
 
+    @Test
+    public void greetAnotherNormalName() {
+        String actual = new Greeting().to("Alice");
+        assertEquals("Hello, Alice.", actual);
+    }
+
 }
