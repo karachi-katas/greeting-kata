@@ -52,4 +52,10 @@ public class GreetingShould {
         assertEquals("Hello, Amy and Charlotte. AND HELLO BRIAN!", actual);
     }
 
+    @Test
+    public void greetMixOfNormalAndMultipleShout() {
+        String actual = new Greeting().to("Amy", "BRIAN", "Charlotte", "SIA");
+        assertEquals("Hello, Amy and Charlotte. AND HELLO BRIAN AND SIA!", actual);
+    }
+
 }

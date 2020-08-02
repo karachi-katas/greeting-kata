@@ -12,6 +12,17 @@ public class Greeting {
         return "Hello, {name}.".replace("{name}", name);
     }
 
+    private String greetTwo(String firstName, String secondName) {
+        if (shoutAt(firstName)) {
+            return greetOne("{name1} AND {name2}"
+                    .replace("{name1}", firstName)
+                    .replace("{name2}", secondName));
+        }
+        return greetOne("{name1} and {name2}"
+                .replace("{name1}", firstName)
+                .replace("{name2}", secondName));
+    }
+
     private boolean shoutAt(String name) {
         return name.toUpperCase().equals(name);
     }
@@ -43,8 +54,6 @@ public class Greeting {
             return to(commaSeparatedNames + ",", names[names.length-1]);
         }
 
-        return "Hello, {name1} and {name2}."
-                .replace("{name1}", names[0])
-                .replace("{name2}", names[1]);
+        return greetTwo(names[0], names[1]);
     }
 }
