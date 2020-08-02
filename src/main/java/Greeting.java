@@ -39,11 +39,7 @@ public class Greeting {
             return GUEST_GREETING;
         }
 
-        if (csv(names)) {
-            return greetMany(split(names));
-        }
-
-        return greetMany(names);
+        return greetMany(split(names));
     }
 
     private String[] split(String[] names) {
@@ -64,10 +60,6 @@ public class Greeting {
 
     private boolean escaped(String name) {
         return name.startsWith("\"") && name.endsWith("\"");
-    }
-
-    private boolean csv(String[] names) {
-        return Arrays.stream(names).anyMatch(name -> name.contains(","));
     }
 
     private String greetMany(String... names) {
