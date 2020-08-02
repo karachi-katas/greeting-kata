@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class Greeting {
 
@@ -53,10 +52,18 @@ public class Greeting {
     }
 
     private String[] split(String name) {
-        if (name.startsWith("\"") && name.endsWith("\"")) {
-            return new String[] {name.replace("\"", "")};
+        if (escaped(name)) {
+            return new String[]{unescape(name)};
         }
         return name.split(",");
+    }
+
+    private String unescape(String name) {
+        return name.replace("\"", "");
+    }
+
+    private boolean escaped(String name) {
+        return name.startsWith("\"") && name.endsWith("\"");
     }
 
     private boolean csv(String[] names) {
@@ -85,15 +92,17 @@ public class Greeting {
     }
 
     private String[] filterLowerCase(String[] names) {
-        return Arrays.stream(names).filter(name -> !name.toUpperCase().equals(name)).toArray(String[]::new);
+        return Arrays.stream(names).filter(name -> !name.toUpperCase().equals(name))
+                .toArray(String[]::new);
     }
 
     private String[] filterUpperCase(String[] names) {
-        return Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)).toArray(String[]::new);
+        return Arrays.stream(names).filter(name -> name.toUpperCase().equals(name))
+                .toArray(String[]::new);
     }
 
     private String lastOf(String[] names) {
-        return names[names.length-1];
+        return names[names.length - 1];
     }
 
     private String join(String[] names) {
@@ -104,6 +113,7 @@ public class Greeting {
 
     private boolean mixOfUpperAndLowerCase(String[] names) {
         return Arrays.stream(names).anyMatch(name -> name.toUpperCase().equals(name)) &&
-                Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)).count() < names.length;
+                Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)).count()
+                        < names.length;
     }
 }
