@@ -1,6 +1,6 @@
 public class Greeting {
 
-    private String to(String name) {
+    private String greetOne(String name) {
         if (guest(name)) {
             return "Hello, my friend.";
         }
@@ -24,7 +24,7 @@ public class Greeting {
         }
 
         if (names.length == 1) {
-            return to(names[0]);
+            return greetOne(names[0]);
         }
 
         if (names.length == 3) {
