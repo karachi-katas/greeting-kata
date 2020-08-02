@@ -39,6 +39,16 @@ public class Greeting {
             return GUEST_GREETING;
         }
 
+        if (Arrays.stream(names).anyMatch(name -> name.contains(","))) {
+            String[] splitNames = Arrays.stream(names).flatMap(name -> Arrays
+                    .stream(name.split(","))).map(String::trim).toArray(String[]::new);
+            return to(splitNames);
+        }
+
+        return greetMany(names);
+    }
+
+    private String greetMany(String... names) {
         if (names.length == 1) {
             return greetOne(names[0]);
         }
@@ -47,13 +57,13 @@ public class Greeting {
             String[] upperCaseNames = filterUpperCase(names);
             String[] lowerCaseNames = filterLowerCase(names);
             return "{lowerCaseNames} AND {upperCaseNames}"
-                    .replace("{lowerCaseNames}", to(lowerCaseNames))
-                    .replace("{upperCaseNames}", to(upperCaseNames));
+                    .replace("{lowerCaseNames}", greetMany(lowerCaseNames))
+                    .replace("{upperCaseNames}", greetMany(upperCaseNames));
         }
 
         if (names.length >= 3) {
             String joinedNames = join(names);
-            return to(joinedNames, lastOf(names));
+            return greetMany(joinedNames, lastOf(names));
         }
 
         return greetTwo(names[0], names[1]);

@@ -58,4 +58,10 @@ public class GreetingShould {
         assertEquals("Hello, Amy and Charlotte. AND HELLO BRIAN AND SIA!", actual);
     }
 
+    @Test
+    public void splitNamesIfThereIsAComma() {
+        String actual = new Greeting().to("Bob", "Charlie, Dianne");
+        assertEquals("Hello, Bob, Charlie, and Dianne.", actual);
+    }
+
 }
