@@ -27,6 +27,13 @@ public class Greeting {
             return to(names[0]);
         }
 
+        if (names.length == 3) {
+            return "Hello, {name1}, {name2}, and {name3}."
+                    .replace("{name1}", names[0])
+                    .replace("{name2}", names[1])
+                    .replace("{name3}", names[2]);
+        }
+
         return "Hello, {name1} and {name2}."
                 .replace("{name1}", names[0])
                 .replace("{name2}", names[1]);
