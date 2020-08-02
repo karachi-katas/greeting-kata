@@ -1,8 +1,34 @@
 public class Greeting {
 
-    public String to(String name) {
-        if (name == null) return "Hello, my friend.";
-        if (name.toUpperCase().equals(name)) return "HELLO {name}!".replace("{name}", name);
+    private String to(String name) {
+        if (guest(name)) {
+            return "Hello, my friend.";
+        }
+        if (shoutAt(name)) {
+            return "HELLO {name}!".replace("{name}", name);
+        }
         return "Hello, {name}.".replace("{name}", name);
+    }
+
+    private boolean shoutAt(String name) {
+        return name.toUpperCase().equals(name);
+    }
+
+    private boolean guest(String name) {
+        return name == null;
+    }
+
+    public String to(String... names) {
+        if (names == null) {
+            return "Hello, my friend.";
+        }
+
+        if (names.length == 1) {
+            return to(names[0]);
+        }
+
+        return "Hello, {name1} and {name2}."
+                .replace("{name1}", names[0])
+                .replace("{name2}", names[1]);
     }
 }
