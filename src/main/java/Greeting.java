@@ -7,6 +7,10 @@ public class Greeting {
     public static final String NORMAL_GREETING = "Hello, {name}.";
     public static final String SHOUT_AND = "{firstName} AND {secondName}";
     public static final String NORMAL_AND = "{firstName} and {secondName}";
+    public static final String EMPTY = "";
+    public static final String COMMA = ",";
+    public static final String QUOTE = "\"";
+    public static final String SPACE = " ";
 
     private String greetOne(String name) {
         if (shoutAt(name)) {
@@ -51,15 +55,15 @@ public class Greeting {
         if (escaped(name)) {
             return new String[]{unescape(name)};
         }
-        return name.split(",");
+        return name.split(COMMA);
     }
 
     private String unescape(String name) {
-        return name.replace("\"", "");
+        return name.replace(QUOTE, EMPTY);
     }
 
     private boolean escaped(String name) {
-        return name.startsWith("\"") && name.endsWith("\"");
+        return name.startsWith(QUOTE) && name.endsWith(QUOTE);
     }
 
     private String greetMany(String... names) {
@@ -68,27 +72,24 @@ public class Greeting {
         }
 
         if (mixOfUpperAndLowerCase(names)) {
-            String[] upperCaseNames = filterUpperCase(names);
-            String[] lowerCaseNames = filterLowerCase(names);
             return "{lowerCaseNames} AND {upperCaseNames}"
-                    .replace("{lowerCaseNames}", greetMany(lowerCaseNames))
-                    .replace("{upperCaseNames}", greetMany(upperCaseNames));
+                    .replace("{lowerCaseNames}", greetMany(lowerCase(names)))
+                    .replace("{upperCaseNames}", greetMany(upperCase(names)));
         }
 
         if (names.length >= 3) {
-            String joinedNames = join(names);
-            return greetMany(joinedNames, lastOf(names));
+            return greetMany(join(names), lastOf(names));
         }
 
         return greetTwo(names[0], names[1]);
     }
 
-    private String[] filterLowerCase(String[] names) {
+    private String[] lowerCase(String[] names) {
         return Arrays.stream(names).filter(name -> !name.toUpperCase().equals(name))
                 .toArray(String[]::new);
     }
 
-    private String[] filterUpperCase(String[] names) {
+    private String[] upperCase(String[] names) {
         return Arrays.stream(names).filter(name -> name.toUpperCase().equals(name))
                 .toArray(String[]::new);
     }
@@ -98,14 +99,22 @@ public class Greeting {
     }
 
     private String join(String[] names) {
-        String commaSeparatedNames = String.join(", ",
+        String commaSeparatedNames = String.join(COMMA + SPACE,
                 Arrays.copyOfRange(names, 0, names.length - 1));
-        return commaSeparatedNames + ",";
+        return commaSeparatedNames + COMMA;
     }
 
     private boolean mixOfUpperAndLowerCase(String[] names) {
-        return Arrays.stream(names).anyMatch(name -> name.toUpperCase().equals(name)) &&
-                Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)).count()
-                        < names.length;
+        return atLeastOneUpperCase(names) &&
+                notAllUpperCase(names);
+    }
+
+    private boolean notAllUpperCase(String[] names) {
+        return Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)).count()
+                < names.length;
+    }
+
+    private boolean atLeastOneUpperCase(String[] names) {
+        return Arrays.stream(names).anyMatch(name -> name.toUpperCase().equals(name));
     }
 }
