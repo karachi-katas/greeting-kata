@@ -68,7 +68,7 @@ public class Greeting {
 
     private String greetMany(String... names) {
         if (names.length == 1) {
-            return greetOne(names[0]);
+            return greetOne(firstOf(names));
         }
 
         if (mixOfUpperAndLowerCase(names)) {
@@ -81,7 +81,7 @@ public class Greeting {
             return greetMany(join(names), lastOf(names));
         }
 
-        return greetTwo(names[0], names[1]);
+        return greetTwo(firstOf(names), lastOf(names));
     }
 
     private String[] lowerCase(String[] names) {
@@ -96,6 +96,9 @@ public class Greeting {
 
     private String lastOf(String[] names) {
         return names[names.length - 1];
+    }
+    private String firstOf(String[] names) {
+        return names[0];
     }
 
     private String join(String[] names) {
