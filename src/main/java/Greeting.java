@@ -30,6 +30,24 @@ public class Greeting {
                 .replace("{secondName}", secondName));
     }
 
+    private String greetMany(String... names) {
+        if (names.length == 1) {
+            return greetOne(firstOf(names));
+        }
+
+        if (mixOfUpperAndLowerCase(names)) {
+            return "{lowerCaseNames} AND {upperCaseNames}"
+                    .replace("{lowerCaseNames}", greetMany(lowerCase(names)))
+                    .replace("{upperCaseNames}", greetMany(upperCase(names)));
+        }
+
+        if (names.length >= 3) {
+            return greetMany(join(exceptLastOf(names)), lastOf(names));
+        }
+
+        return greetTwo(firstOf(names), lastOf(names));
+    }
+
     private boolean shoutAt(String name) {
         return name.toUpperCase().equals(name);
     }
@@ -64,24 +82,6 @@ public class Greeting {
 
     private boolean escaped(String name) {
         return name.startsWith(QUOTE) && name.endsWith(QUOTE);
-    }
-
-    private String greetMany(String... names) {
-        if (names.length == 1) {
-            return greetOne(firstOf(names));
-        }
-
-        if (mixOfUpperAndLowerCase(names)) {
-            return "{lowerCaseNames} AND {upperCaseNames}"
-                    .replace("{lowerCaseNames}", greetMany(lowerCase(names)))
-                    .replace("{upperCaseNames}", greetMany(upperCase(names)));
-        }
-
-        if (names.length >= 3) {
-            return greetMany(join(exceptLastOf(names)), lastOf(names));
-        }
-
-        return greetTwo(firstOf(names), lastOf(names));
     }
 
     private String[] lowerCase(String[] names) {
