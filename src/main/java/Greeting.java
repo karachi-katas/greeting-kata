@@ -12,6 +12,14 @@ public class Greeting {
     public static final String QUOTE = "\"";
     public static final String SPACE = " ";
 
+    public String to(String... names) {
+        if (guest(names)) {
+            return GUEST_GREETING;
+        }
+
+        return greetMany(split(names));
+    }
+
     private String greetOne(String name) {
         if (shoutAt(name)) {
             return SHOUT_GREETING.replace("{name}", name);
@@ -54,14 +62,6 @@ public class Greeting {
 
     private boolean guest(String[] names) {
         return names == null;
-    }
-
-    public String to(String... names) {
-        if (guest(names)) {
-            return GUEST_GREETING;
-        }
-
-        return greetMany(split(names));
     }
 
     private String[] split(String[] names) {
