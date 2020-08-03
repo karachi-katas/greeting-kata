@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class Greeting {
 
@@ -65,8 +66,12 @@ public class Greeting {
     }
 
     private String[] split(String[] names) {
-        return Arrays.stream(names).flatMap(name -> Arrays
-                .stream(split(name))).map(String::trim).toArray(String[]::new);
+        return arrayOf(Arrays.stream(names).flatMap(name -> Arrays
+                .stream(split(name))).map(String::trim));
+    }
+
+    private String[] arrayOf(Stream<String> stream) {
+        return stream.toArray(String[]::new);
     }
 
     private String[] split(String name) {
@@ -85,13 +90,11 @@ public class Greeting {
     }
 
     private String[] lowerCase(String[] names) {
-        return Arrays.stream(names).filter(name -> !name.toUpperCase().equals(name))
-                .toArray(String[]::new);
+        return arrayOf(Arrays.stream(names).filter(name -> !name.toUpperCase().equals(name)));
     }
 
     private String[] upperCase(String[] names) {
-        return Arrays.stream(names).filter(name -> name.toUpperCase().equals(name))
-                .toArray(String[]::new);
+        return arrayOf(Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)));
     }
 
     private String lastOf(String[] names) {
