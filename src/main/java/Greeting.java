@@ -61,6 +61,10 @@ public class Greeting {
         return name.toUpperCase().equals(name);
     }
 
+    private boolean doNotShoutAt(String name) {
+        return !shoutAt(name);
+    }
+
     private boolean guest(String[] names) {
         return names == null;
     }
@@ -90,11 +94,11 @@ public class Greeting {
     }
 
     private String[] lowerCase(String[] names) {
-        return arrayOf(Arrays.stream(names).filter(name -> !name.toUpperCase().equals(name)));
+        return arrayOf(Arrays.stream(names).filter(this::doNotShoutAt));
     }
 
     private String[] upperCase(String[] names) {
-        return arrayOf(Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)));
+        return arrayOf(Arrays.stream(names).filter(this::shoutAt));
     }
 
     private String lastOf(String[] names) {
@@ -119,11 +123,11 @@ public class Greeting {
     }
 
     private boolean notAllUpperCase(String[] names) {
-        return Arrays.stream(names).filter(name -> name.toUpperCase().equals(name)).count()
+        return Arrays.stream(names).filter(this::shoutAt).count()
                 < names.length;
     }
 
     private boolean atLeastOneUpperCase(String[] names) {
-        return Arrays.stream(names).anyMatch(name -> name.toUpperCase().equals(name));
+        return Arrays.stream(names).anyMatch(this::shoutAt);
     }
 }
