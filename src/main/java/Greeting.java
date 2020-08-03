@@ -78,7 +78,7 @@ public class Greeting {
         }
 
         if (names.length >= 3) {
-            return greetMany(join(names), lastOf(names));
+            return greetMany(join(exceptLastOf(names)), lastOf(names));
         }
 
         return greetTwo(firstOf(names), lastOf(names));
@@ -102,9 +102,12 @@ public class Greeting {
     }
 
     private String join(String[] names) {
-        String commaSeparatedNames = String.join(COMMA + SPACE,
-                Arrays.copyOfRange(names, 0, names.length - 1));
+        String commaSeparatedNames = String.join(COMMA + SPACE, names);
         return commaSeparatedNames + COMMA;
+    }
+
+    private String[] exceptLastOf(String[] names) {
+        return Arrays.copyOfRange(names, 0, names.length - 1);
     }
 
     private boolean mixOfUpperAndLowerCase(String[] names) {
